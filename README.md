@@ -455,7 +455,7 @@ ax2.imshow(convertToRGB(lbp_detected_img))
 ![png](output/output_52_1.png)
 
 
-- **Accuracy:** `Haar` detected more faces and than `LBP`.
+- **Accuracy:** Both `Haar` and `LBP` detected faces successfully.
 - **Speed:** `LBP` was faster than `Haar`.
 
 ### Test-2 
@@ -514,7 +514,7 @@ ax2.imshow(convertToRGB(lbp_detected_img))
 ![png](output/output_55_1.png)
 
 
-- **Accuracy:** Both `Haar` and `LBP` detected faces successfully. 
+- **Accuracy:** `Haar` detected more faces and than `LBP`.
 - **Speed:** `LBP` was significantly faster than `Haar`.
 
 ## End Notes
