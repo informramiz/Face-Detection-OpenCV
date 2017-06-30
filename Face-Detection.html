@@ -11760,13 +11760,43 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Have you ever wondered how does your smartphone unlocks itself by just looking at your face or if you are a movie fan then how does they detect a known suspect passing by a mall or withdrawing money from an ATM?</p>
-<p>I don't know about you but I have always been curios about these questions along with many others like how does your camera takes a picture as soon as you smile(in smile detection mode)? This curiosity led me into the field of <a href="https://en.wikipedia.org/wiki/Computer_vision">computer vision</a> which is a field that has answers to crazy questions like these. Computer Vision basically deals with every problem related to a machine extracting useful information from images like we humans do. For example, when I look at my friend, I recognize him and say "Hey Brian, how are you doing"? or when you go to a parking, you recognize your car. How can we can teach the machine to do the same? Computer vision teaches you exactly how to do that.</p>
+<p>Have you ever wondered how does your smartphone unlocks itself by just looking at your face or if you are a movie or season fan like <a href="https://en.wikipedia.org/wiki/CSI:_Crime_Scene_Investigation">CSI</a> then how does they detect a known suspect passing by a mall or withdrawing money from an ATM?</p>
+<p><img src="docs-images/csi-face-recognition.gif" alt="CSI Face Recognition"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I don't know about you but I have always been curios about these questions along with many others like how does your camera takes a picture as soon as you smile(in smile detection mode)?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="docs-images/camera-face-detection.png" alt="Camera Face Detection"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This curiosity led me into the field of <a href="https://en.wikipedia.org/wiki/Computer_vision">computer vision</a> which is a field that has answers to crazy questions like these. Computer Vision basically deals with every problem related to a machine extracting useful information from images like we humans do. For example, when I look at my friend, I recognize him and say "Hey Brian, how are you doing"? or when you go to a parking, you recognize your car. How can we can teach the machine to do the same? Computer vision teaches you exactly how to do that.</p>
 <p>So after getting into the field of computer vision I got my answers and the answers were as simple as you may have guessed. For example, for unlocking the your device, the device extracts your face from image (fency name is face detection), compares your current image face with the one it has saved before during training and checks if they both match (fency name is face recognition) and if they do, it unlocks itself. Same is true for catching the suspect. For smile detection, the camera app detects your face and then it detects smile on your face and if smile is detected on your face it takes the picture for you with smile.</p>
 <p>Now that I have learned these answers, my next goal was to actually code these ideas of <code>face detection</code> and <code>face recognition</code> myself and to do that I learned <a href="http://opencv.org/">OpenCV</a> which is an excellent yet free library that makes coding computer vision applications as easy as you think them to be.</p>
 <p>In this article I am going to explain to you exactly what I learned and coded so that you can code these interesting ideas too. In this article I am going to focus on <strong>face detection</strong> and in my next article I will focus on <strong>face recognition</strong>.</p>
 <p>To get you excited, this is what our final output is going to look like.</p>
-<p><img src="output/output.png" alt="final output"></p>
+<p><img src="docs-images/output.png" alt="final output"></p>
 
 </div>
 </div>
@@ -11785,7 +11815,30 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Face detection has been one of the hot topics of the computer vision since last few years. People are taking a lot of interest in face detection because of its rich applications. <code>Face recognition</code> is one the top most interesting application that is based on face detection. Facebook is using this for tagging or sharing the pictures, in China an ATM machine has been introduced that uses built-in face recognition feature to avoid illegal money withdrawal, countries like the US or Europe are using it for surveillance or security purposes. Emotion analysis or feature extraction of the face is also used for different research or business purposes, a smartphone in your hand is using your face identity for unlocking your phone and there are many more applications around you using face detection.</p>
+<p>Face detection has been one of the hot topics of the computer vision since last few years. For example, cameras use Face detection to make sure faces are focused before picture is taken.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="docs-images/camera-af.gif" alt="Camera Face Detection Autofocus"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>People are taking a lot of interest in face detection because of its rich applications. <code>Face recognition</code> is one the top most interesting application that is based on face detection. Facebook is using this for tagging or sharing the pictures, if you have noticed, as soon as you upload a picture to Facebook it automatically recognizes the person.</p>
+<p><img src="docs-images/fb-tagging.gif" alt="Facebook Face Recognition"></p>
+<p>In China an ATM machine has been introduced that uses built-in face recognition feature to avoid illegal money withdrawal, countries like the US or Europe are using it for surveillance or security purposes. Emotion analysis or feature extraction of the face is also used for different research or business purposes, a smartphone in your hand is using your face identity for unlocking your phone and there are many more applications around you using face detection.</p>
+<p><img src="docs-images/android-fr.gif" alt="Android Face Recognition"></p>
 <p>These fascinating applications and the unlimited use of face detection forced me to dive into the depths of it. Now if you are imagining,<code>"I wish I too can build such fancy applications"</code> or <code>"I wish I can build this on my computer"</code> then stop imagining, instead start enjoying as at the end of this article you will be have a face detector ready to detect any face.</p>
 
 </div>
@@ -11815,12 +11868,12 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>OpenCV</code> provides us with two pre-trained (already trained and ready to be used for detection) classifiers:</p>
+<p>A computer program that decides whether an image is positive image (face image) or negative image (non-face image) is called a classifier. A classifier is trained on a hundreds of thousands of face and non-face images to learn to classify a new image as face or non-face image correctly. <code>OpenCV</code> provides us with two pre-trained (already trained and ready to be used for detection) classifiers:</p>
 <ol>
-<li>Haar Cascade Classifier</li>
-<li>LBP Cascade Classifier</li>
+<li>Haar Classifier</li>
+<li>LBP Classifier</li>
 </ol>
-<p>The XML training files of these pre-trained classifiers are stored in <code>opencv/data/</code>. Each file starts with the name of classifier it belongs to. For example, <code>haarcascade_frontalface_alt.xml</code> as you might have guessed belongs to Haar cascade classifier.</p>
+<p><strong>Both of these classifiers process images in grayscales</strong> as we don't need color information to decide if image has a face or not. As these are pretrained in OpenCV so their learned knwoledge files also comes bundled with OpenCV <code>opencv/data/</code>. To run a classifier we need to load the knowledge files first as without that knowledge a classifier is nothing but just like a newly born baby, right? Each file starts with the name of classifier it belongs to. For example, <code>haarcascade_frontalface_alt.xml</code> as you might have guessed belongs to Haar cascade classifier.</p>
 
 </div>
 </div>
@@ -11830,7 +11883,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Haar-Cascade-Classifier">Haar Cascade Classifier<a class="anchor-link" href="#Haar-Cascade-Classifier">&#182;</a></h3>
+<h3 id="Haar-Classifier">Haar Classifier<a class="anchor-link" href="#Haar-Classifier">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11839,14 +11892,42 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is a machine learning based approach where a cascade function (you can understand it as a process whereby something, in our case layer of features, is successively passed on) is trained from a lot of positive (images with face) and negative images (images without face). The algorithm is proposed by Paul Viola and Michael Jones.</p>
-<p>The algorithm has four stages:</p>
-<ol>
-<li><strong>Haar Feature Selection:</strong> <a href="https://en.wikipedia.org/wiki/Haar-like_features">Haar features</a> are calculated in the subsections of the input image. The difference between the sum of pixel intensities of adjacent rectangular regions is calculated to differentiate the subsections of the image. A large number of haar-like features are required for getting facial features.</li>
-<li><strong>Creating an Integral Image:</strong> Too much computation will be needed when operations are performed on all pixels, so an integral image (summed up image, taking sum of image pixels to consider them as one) is used that reduce the computation to only four pixels. This makes the algorithm quite fast.</li>
-<li><strong>Adaboost:</strong> To speed things up more, as all the computed features are not relevant for the classification purpose so <code>Adaboost</code> is used to classify only the relevant features as AdaBoost training process selects only those features known to improve the classification (face/non-face) accuracy of classifier.</li>
-<li><strong>Cascading Classifiers:</strong> Now we can use the relevant features to classify a face from a non-face but algorithm provides another improvement using the concept of <code>cascades of classifiers</code>. Every region of the image is not a facial region so it is not useful to apply all the features on all the regions of the image. Instead of using all the features at a time, group the features into different stages of the classifier. Apply each stage one-by-one on each image region to find a facial region. If on any stage the classifier fails for any region, then that region will be discarded from further iterations. At the end only the facial region will pass all the stages of the classifier. </li>
-</ol>
+<p>It is a machine learning based approach where a classifier is trained from a lot of positive (images with face) and negative images (images without face). The algorithm is proposed by Paul Viola and Michael Jones.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Haar is a classifier and do you remember how a classifier is trained? Yes, with a lot of images so initially, the algorithm needs a lot of positive images (images of faces) and negative images (images without faces) to train. But you must be wondering how exactly is it trained, right? Well, it starts by extracting Haar features from each image. The windows shown in image below are used to extract features.</p>
+<p><img src="docs-images/haar-features.jpg" alt="Haar Features"></p>
+<p>Each window is placed on image to calculate a single feature and each feature is a single value obtained by subtracting sum of pixels under white part of the window from sum of pixels under black part of the window.</p>
+<p><img src="docs-images/haar.png" alt="Haar Windows placement"></p>
+<p>Now all possible sizes of each window are placed on all possible locations on each image to calculate plenty of features. For example, in above image we are extracting two features. The first feature selected focus on the property that the region of the eyes is often darker than the region of the nose and cheeks. The second feature selected relies on the property that the eyes are darker than the bridge of the nose.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But among all these features calculated, most of them are irrelevant. For example, the same windows (as applied in above image) applying on cheeks or any other place is irrelevant because none of the areas on cheeks are darker or lighter than other areas on checks, all areas on cheeks are same. So we discard irrelevant features and only keep relevant features by a fancy technique called <strong>Adaboost</strong>. AdaBoost training process selects only those features known to improve the classification (face/non-face) accuracy of classifier (in our case Haar).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the end, the algorithm considers the fact that in an image, most of the image region is non-face region. So it is a better idea to have a simple method to check if a window is not a face region. If it is not, discard it in a single shot. Don't process it again. Instead focus on region where there can be a face. This way, we can find more time to check a possible face region.</p>
+<p>So this is a simple intuitive explanation of how Viola-Jones face detection works.</p>
 
 </div>
 </div>
@@ -11865,16 +11946,15 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>LBP (Local Binary Patterns) is a visual/texture descriptor and our face too is composed of micro visual patterns. So, LBP features are extracted to form a feature vector to classify a face from a non-face. Following are the basic steps of LBP Cascade classifier algorithm:</p>
-<ol>
-<li><strong>LBP Labelling:</strong> A label as a string of <a href="https://en.wikipedia.org/wiki/Binary_number">binary numbers</a> (for example "00111" is binary string) is assigned to each pixel of an image.</li>
-<li><strong>Feature Vector:</strong> Image is divided into sub-regions and for each sub-region, a <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a> of labels is constructed. Then, a feature vector is formed by concatenating the sub-regions histograms into a large histogram.</li>
-<li><p><strong>AdaBoost Learning:</strong> To speed things up more, as all the computed features are not relevant for the classification purpose so Adaboost is used to classify only the relevant features as AdaBoost training process selects only those features known to improve the classification (face/non-face) accuracy of classifier.</p>
-</li>
-<li><p><strong>Cascade of Classifier:</strong> Every region of the image is not a facial region so it is not useful to apply all the features on all the regions of the image. Instead of using all the features at a time, group the features into different stages of the classifier. Apply each stage one-by-one on each image region to find a facial region. If on any stage the classifier fails for any region, then that region will be discarded from further iterations. At the end only the facial region will pass all the stages of the classifier.</p>
-</li>
-</ol>
-<p>Went off the top of the head? Yeah, I understand your pain! It is for nerds!! So after all this theory, is it clear to you which classifier should you use and when? I don't think so. So let's compare them both so that we can make this decision.</p>
+<p>As LBP is also a classifier so it also needs to be trained on a lot of images. LBP (Local Binary Patterns) is a visual/texture descriptor and our face too is composed of micro visual patterns. So, LBP features are extracted to form a feature vector to classify a face from a non-face. Now the big question is how to find LBP features. Let's find out!</p>
+<p>Each training image is divided into a number of blocks as shown in image below.</p>
+<p><img src="docs-images/lbp-blocks.png" alt="LBP Image Blocks =500x500"></p>
+<p>For each block, LBP looks at 9 pixels (3x3 window) at a time and it is particular interested in the pixel at the center of the window. It compares the center pixel value with every neighbor pixel value under 3x3 window and for each neighbor pixel that is greater than or equal to the center pixel, it sets its value to 1 and for others it sets them to 0. Then it reads the updated pixel values (which can be either 0 or 1) in a clockwise order and forms a binary number. That binary number is then converted to a decimal number and that decimal number is the new value of center pixel. We do this for every pixel in a block.</p>
+<p><img src="docs-images/lbp-labeling.png" alt="LBP thresholding"></p>
+<p>We then convert each block values into a <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a>, so now we have got 1 histogram for each block in an image. Image below shows an example histogram.</p>
+<p><img src="docs-images/lbp-histogram.png" alt="LBP histogram =200x200"></p>
+<p>Next we concatenate these block histograms to form a one feature vector for one image which contains all the features we are interested in. So this is how we extract LBP features from an image. Fun, right? No? OK then let's move on to the more interesting sections of this article.</p>
+<p>So after all this theory, is it clear to you which classifier should you use and when? I don't think so. So let's compare them both so that we can make this decision.</p>
 
 </div>
 </div>
