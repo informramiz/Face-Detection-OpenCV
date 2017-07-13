@@ -129,7 +129,6 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import time 
-get_ipython().magic('matplotlib inline')
 
 
 # When you load an image using OpenCV it loads that image into BGR color space by default. To show the colored image using `matplotlib` we have to convert it to RGB space. Following is a helper function to do exactly that. 
