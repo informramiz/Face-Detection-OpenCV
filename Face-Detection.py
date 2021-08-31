@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # # Face Detection In Python Using OpenCV
@@ -124,11 +123,11 @@
 
 # In[1]:
 
-#import required libraries 
+# import required libraries
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-import time 
+import time
 
 
 # When you load an image using OpenCV it loads that image into BGR color space by default. To show the colored image using `matplotlib` we have to convert it to RGB space. Following is a helper function to do exactly that. 
@@ -147,49 +146,46 @@ def convertToRGB(img):
 
 # In[3]:
 
-#load cascade classifier training file for haarcascade
+# load cascade classifier training file for haarcascade
 haar_face_cascade = cv2.CascadeClassifier('data/haarcascade_frontalface_alt.xml')
 
-#load test iamge
+# load test iamge
 test1 = cv2.imread('data/test1.jpg')
 
-#convert the test image to gray image as opencv face detector expects gray images
+# convert the test image to gray image as opencv face detector expects gray images
 gray_img = cv2.cvtColor(test1, cv2.COLOR_BGR2GRAY)
 
-#display the gray image using OpenCV
-# cv2.imshow('Test Imag', gray_img)
+# display the gray image using OpenCV
+# cv2.imshow('Test Image', gray_img)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
 
-#or if you have matplotlib installed then 
+# or if you have matplotlib installed then
 plt.imshow(gray_img, cmap='gray')
-
 
 # Now we find the faces in the image with **`detectMultiScale`**. If faces are found, this function returns the positions of detected faces as Rect(x,y,w,h).
 
 # In[4]:
 
-#let's detect multiscale (some images may be closer to camera than others) images
+# let's detect multiscale (some images may be closer to camera than others) images
 faces = haar_face_cascade.detectMultiScale(gray_img, scaleFactor=1.1, minNeighbors=5);
 
-#print the number of faces found
+# print the number of faces found
 print('Faces found: ', len(faces))
 
-
-# Next, let's loop over the list of faces (rectangles) it returned and draw those rectangles using built in OpenCV **`rectangle`** function on our original colored image to see if it detected the right faces. 
+# Next, let's loop over the list of faces (rectangles) it returned and draw those rectangles using built in OpenCV **`rectangle`** function on our original colored image to see if it detected the right faces.
 
 # In[5]:
 
-#go over list of faces and draw them as rectangles on original colored img
+# go over list of faces and draw them as rectangles on original colored img
 for (x, y, w, h) in faces:
-    cv2.rectangle(test1, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    cv2.rectangle(test1, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-
-# Display the original image to see rectangles drawn and verify that detected faces are really faces and not false positives. 
+# Display the original image to see rectangles drawn and verify that detected faces are really faces and not false positives.
 
 # In[6]:
 
-#conver image to RGB and show image
+# convert image to RGB and show image
 plt.imshow(convertToRGB(test1))
 
 
@@ -199,18 +195,18 @@ plt.imshow(convertToRGB(test1))
 
 # In[7]:
 
-def detect_faces(f_cascade, colored_img, scaleFactor = 1.1):
+def detect_faces(f_cascade, colored_img, scaleFactor=1.1):
     img_copy = np.copy(colored_img)
-    #convert the test image to gray image as opencv face detector expects gray images
+    # convert the test image to gray image as opencv face detector expects gray images
     gray = cv2.cvtColor(img_copy, cv2.COLOR_BGR2GRAY)
-    
-    #let's detect multiscale (some images may be closer to camera than others) images
+
+    # let's detect multiscale (some images may be closer to camera than others) images
     faces = f_cascade.detectMultiScale(gray, scaleFactor=scaleFactor, minNeighbors=5);
-    
-    #go over list of faces and draw them as rectangles on original colored img
+
+    # go over list of faces and draw them as rectangles on original colored img
     for (x, y, w, h) in faces:
-        cv2.rectangle(img_copy, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        
+        cv2.rectangle(img_copy, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
     return img_copy
 
 
@@ -218,15 +214,14 @@ def detect_faces(f_cascade, colored_img, scaleFactor = 1.1):
 
 # In[8]:
 
-#load another image
+# load another image
 test2 = cv2.imread('data/test3.jpg')
 
-#call our function to detect faces
+# call our function to detect faces
 faces_detected_img = detect_faces(haar_face_cascade, test2)
 
-#conver image to RGB and show image
+# conver image to RGB and show image
 plt.imshow(convertToRGB(faces_detected_img))
-
 
 # ### `detectMultiScale` Parameter Details
 
@@ -244,29 +239,27 @@ plt.imshow(convertToRGB(faces_detected_img))
 
 # In[9]:
 
-#load another image
+# load another image
 test2 = cv2.imread('data/test4.jpg')
 
-#call our function to detect faces
+# call our function to detect faces
 faces_detected_img = detect_faces(haar_face_cascade, test2)
 
-#conver image to RGB and show image
+# conver image to RGB and show image
 plt.imshow(convertToRGB(faces_detected_img))
-
 
 # Well, we got two false positives. What went wrong there? Remember, some faces may be closer to the camera and they would appear bigger than those faces in the back. The scale factor compensates for this so can tweak that parameter. For example, `scaleFactor=1.2` improved the results.
 
 # In[10]:
 
-#load another image
+# load another image
 test2 = cv2.imread('data/test4.jpg')
 
-#call our function to detect faces
+# call our function to detect faces
 faces_detected_img = detect_faces(haar_face_cascade, test2, scaleFactor=1.2)
 
-#conver image to RGB and show image
+# conver image to RGB and show image
 plt.imshow(convertToRGB(faces_detected_img))
-
 
 # So you have to tune these parameters according to information you have about your data.
 
@@ -278,30 +271,28 @@ plt.imshow(convertToRGB(faces_detected_img))
 
 # In[11]:
 
-#load cascade classifier training file for lbpcascade
+# load cascade classifier training file for lbpcascade
 lbp_face_cascade = cv2.CascadeClassifier('data/lbpcascade_frontalface.xml')
 
-#load test image
+# load test image
 test2 = cv2.imread('data/test2.jpg')
-#call our function to detect faces
+# call our function to detect faces
 faces_detected_img = detect_faces(lbp_face_cascade, test2)
 
-#conver image to RGB and show image
+# conver image to RGB and show image
 plt.imshow(convertToRGB(faces_detected_img))
 
-
-# Let's try it on another test image. 
+# Let's try it on another test image.
 
 # In[12]:
 
-#load test image
+# load test image
 test2 = cv2.imread('data/test3.jpg')
-#call our function to detect faces
+# call our function to detect faces
 faces_detected_img = detect_faces(lbp_face_cascade, test2)
 
-#conver image to RGB and show image
+# conver image to RGB and show image
 plt.imshow(convertToRGB(faces_detected_img))
-
 
 # ## Haar and LBP Results Analysis
 
@@ -309,59 +300,58 @@ plt.imshow(convertToRGB(faces_detected_img))
 
 # In[13]:
 
-#load cascade classifier training file for haarcascade
+# load cascade classifier training file for haarcascade
 haar_face_cascade = cv2.CascadeClassifier('data/haarcascade_frontalface_alt.xml')
-#load cascade classifier training file for lbpcascade
+# load cascade classifier training file for lbpcascade
 lbp_face_cascade = cv2.CascadeClassifier('data/lbpcascade_frontalface.xml')
 
-#load test image1
+# load test image1
 test1 = cv2.imread('data/test5.jpg')
-#load test image2
+# load test image2
 test2 = cv2.imread('data/test6.jpg')
-
 
 # ### Test-1
 
 # In[16]:
 
-#------------HAAR-----------
-#note time before detection
+# ------------HAAR-----------
+# note time before detection
 t1 = time.time()
 
-#call our function to detect faces
+# call our function to detect faces
 haar_detected_img = detect_faces(haar_face_cascade, test1)
 
-#note time after detection
+# note time after detection
 t2 = time.time()
-#calculate time difference
+# calculate time difference
 dt1 = t2 - t1
-#print the time differene
+# print the time differene
 
-#------------LBP-----------
-#note time before detection
+# ------------LBP-----------
+# note time before detection
 t1 = time.time()
 
 lbp_detected_img = detect_faces(lbp_face_cascade, test1)
 
-#note time after detection
+# note time after detection
 t2 = time.time()
-#calculate time difference
+# calculate time difference
 dt2 = t2 - t1
-#print the time differene
+# print the time differene
 
-#----------Let's do some fancy drawing-------------
-#create a figure of 2 plots (one for Haar and one for LBP)
+# ----------Let's do some fancy drawing-------------
+# create a figure of 2 plots (one for Haar and one for LBP)
 f, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 
-#show Haar image
+# show Haar image
 ax1.set_title('Haar Detection time: ' + str(round(dt1, 3)) + ' secs')
 ax1.imshow(convertToRGB(haar_detected_img))
 
-#show LBP image
+# show LBP image
 ax2.set_title('LBP Detection time: ' + str(round(dt2, 3)) + ' secs')
 ax2.imshow(convertToRGB(lbp_detected_img))
 
-#show images
+# show images
 # plt.imshow(faces_detected_img)
 
 
@@ -372,44 +362,44 @@ ax2.imshow(convertToRGB(lbp_detected_img))
 
 # In[17]:
 
-#------------HAAR-----------
-#note time before detection
+# ------------HAAR-----------
+# note time before detection
 t1 = time.time()
 
-#call our function to detect faces
+# call our function to detect faces
 haar_detected_img = detect_faces(haar_face_cascade, test2)
 
-#note time after detection
+# note time after detection
 t2 = time.time()
-#calculate time difference
+# calculate time difference
 dt1 = t2 - t1
-#print the time differene
+# print the time differene
 
-#------------LBP-----------
-#note time before detection
+# ------------LBP-----------
+# note time before detection
 t1 = time.time()
 
 lbp_detected_img = detect_faces(lbp_face_cascade, test2)
 
-#note time after detection
+# note time after detection
 t2 = time.time()
-#calculate time difference
+# calculate time difference
 dt2 = t2 - t1
-#print the time differene
+# print the time differene
 
-#----------Let's do some fancy drawing-------------
-#create a figure of 2 plots (one for Haar and one for LBP)
+# ----------Let's do some fancy drawing-------------
+# create a figure of 2 plots (one for Haar and one for LBP)
 f, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 
-#show Haar image
+# show Haar image
 ax1.set_title('Haar Detection time: ' + str(round(dt1, 3)) + ' secs')
 ax1.imshow(convertToRGB(haar_detected_img))
 
-#show LBP image
+# show LBP image
 ax2.set_title('LBP Detection time: ' + str(round(dt2, 3)) + ' secs')
 ax2.imshow(convertToRGB(lbp_detected_img))
 
-#show images
+# show images
 # plt.imshow(faces_detected_img)
 
 
@@ -425,6 +415,3 @@ ax2.imshow(convertToRGB(lbp_detected_img))
 # You can download the complete code from this [repo](https://github.com/informramiz/Face-Detection-OpenCV) along with test images and LBP and Haar training files. 
 
 # In[ ]:
-
-
-
